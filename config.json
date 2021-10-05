@@ -15,5 +15,9 @@
                 }
             }
         }
-    ]
+    ],
+    "debugging": {
+        "bind": "localhost:8123",
+        "metrics": true
+    }
 }

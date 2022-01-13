@@ -214,7 +214,7 @@ func (t *ClickhouseTable) BindMessage(messageType protoreflect.MessageType, pool
 
 		if field.Kind() == protoreflect.MessageKind {
 			innerMessageFullName := field.Message().FullName()
-			if innerMessageFullName == "google.protobuf.Timestamp" {
+			if innerMessageFullName == "google.protobuf.Timestamp" || innerMessageFullName == "protos.Timestamp" {
 				columnFields[column.Position-1].isTimestamp = true
 				columnFields[column.Position-1].timestampFields = [2]protoreflect.FieldDescriptor{
 					field.Message().Fields().ByName("seconds"),

@@ -99,6 +99,9 @@ func (c *ClickhouseTableWriter) run(done chan struct{}) {
 		if batch != nil {
 			err := c.writeBatch(batch)
 			if err != nil {
+				if err == ErrNoConn {
+					panic("Ran out of connections, panicking")
+				}
 				log.Error().Err(err).Str("table", string(c.table.Name)).Int("batch-size", len(batch)).Msg("clickhouse-table-writer: failed to write batch")
 			}
 		}
